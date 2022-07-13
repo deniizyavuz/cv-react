@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import { CVHeader, Screen } from '../../components/MyComponents';
-import TopNav from '../../components/TopNav'
-import { degreeList, experienceList, skillList } from '../../constants/enum';
+import TopNav from '../TopNav'
+import { degreeList, experienceList, skillList } from '../../enum';
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 interface Props {

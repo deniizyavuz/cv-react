@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Footer, Greeting, Screen, SubTitle } from '../../components/MyComponents'
-import TopNav from '../../components/TopNav'
+import TopNav from '../TopNav'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 interface Props {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import useWindowDimensions from '../hooks/useWindowDimensions';
-import { Bar, NavButton } from './MyComponents';
+import { Bar, NavButton } from '../components/MyComponents';
 
 
 
