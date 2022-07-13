@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomeScreen from './Pages/HomePage/HomeScreen';
-import CVScreen from './Pages/CVPage/CVScreen';
+import HomeScreen from './pages/HomePage/HomeScreen';
+import CVScreen from './pages/CVPage/CVScreen';
 
 function App() {
+  console.log("aaaaa");
+
   return (
     <div>
       <BrowserRouter>
