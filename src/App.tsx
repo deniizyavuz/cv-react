@@ -4,8 +4,6 @@ import HomeScreen from './pages/HomePage/HomeScreen';
 import CVScreen from './pages/CVPage/CVScreen';
 
 function App() {
-  console.log("aaaaa");
-
   return (
     <div>
       <BrowserRouter>
