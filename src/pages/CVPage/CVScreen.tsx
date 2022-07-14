@@ -1,98 +1,43 @@
 import React from 'react'
-import styled from 'styled-components';
-import { CVHeader, Screen } from '../../components/MyComponents';
-import TopNav from '../TopNav'
-import { degreeList, experienceList, skillList } from '../../enum';
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import ContactInfo from '../../components/atoms/ContactInfo/ContactInfo';
+import ProfileTitle from '../../components/atoms/ProfileTitle/ProfileTitle';
+import { Screen } from '../../components/molecules/FScreen/Screen';
+import NameTagCV from '../../components/molecules/NameTag/NameTag';
+import TopNav from '../../components/organisms/TopNav/TopNav'
+import { CVHeader, FlexBox, LeftScreen, MutedText, MutedTitle, OverFlow, SectionBox, SpaceBetween, SubTitle, Title } from './CVScreen.style';
 
-interface Props {
-    height: number;
-    width: number;
-    size: number;
+const skillList = require("../../utils/skillList.json")
+const experienceList = require("../../utils/experienceList.json")
+const degreeList = require("../../utils/degreeList.json")
+
+interface degree {
+    degreeTitle: string,
+    universityName: string,
+    program: string,
+    startDate: string,
+    endDate: string,
 }
 
-const NameTag = styled.div`
-    color: white;
-    display : flex;
-    justify-content : space-between;
-    align-items : center;
-    padding : 0 10%;
-    font-size : 30px;
-    line-height :0.2;
-`
-
-const Avatar = styled.img<Pick<Props, 'size'>>`
-    width : ${props => props.size}px;
-    height : ${props => props.size}px;
-    border-radius : ${props => props.size / 2}px;
-    background: red;
-    margin-top : ${props => props.size / 2}px;
-    resize: block;
-    z-index: 3;
-    position:absolute;
-    `
-
-const Title = styled.h1`
-    letter-spacing: 0.4em;
-    font-weight: 700;
-    font-size: 33px;
-    line-height : 0;
-`
-
-const MutedTitle = styled.p`
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1;
-    color: #C4C4C4;
-`
+interface experience {
+    jobTitle: string,
+    period: number,
+    companyName: string,
+    description: string,
+}
 
 
-const SubTitle = styled.h4`
-    font-weight: 700;
-    font-size: 20px;
-    line-height : 0;
-`
-
-const FlexBox = styled.div`
-    display: flex;
-    padding: 10px 5%;
-`
-
-const SectionBox = styled.div`
-    margin-top: 100px;
-`
-
-const MutedText = styled.p`
-    color: #C4C4C4;
-    line-height: 0.4;
-`
 
 export default function CVScreen() {
-    const { width, height } = useWindowDimensions();
+    console.log(degreeList);
     return (
-        <div style={{ overflow: 'hidden', maxWidth: '100%' }}>
+        <OverFlow>
             <TopNav />
             <CVHeader />
             <Screen>
-                <NameTag>
-                    <div>
-                        <p><b>DENİZ</b> YAVUZ</p>
-                        <p style={{ fontSize: '20px' }}>Front End Developer</p>
-                    </div>
-                    <div>
-                        <Avatar size={height * 0.25} alt="Little Girl" src={require('../../assets/CVPage/programmer.png')} />
-                    </div>
-                </NameTag>
+                <NameTagCV />
                 <FlexBox>
-                    <div style={{
-                        width: width * 0.3,
-                        padding: "0 30px",
-                    }}>
-                        <SectionBox>
-                            <p>Çankaya,Ankara</p>
-                            <p>05555555</p>
-                            <p>example@gmail.com</p>
-                        </SectionBox>
+                    <LeftScreen>
+                        <ContactInfo />
                         <SectionBox>
                             <Title>
                                 SKILLS
@@ -101,7 +46,7 @@ export default function CVScreen() {
                                 PROFESSIONAL
                             </MutedTitle>
                             {
-                                skillList.map((skill, skillIndex) => {
+                                skillList.map((skill: string, skillIndex: number) => {
                                     return (
                                         <p key={skill}>
                                             {
@@ -117,7 +62,7 @@ export default function CVScreen() {
                                 EDUCATION
                             </Title>
                             {
-                                degreeList.map((degree, degreeIndex) => {
+                                degreeList.map((degree: degree, degreeIndex: any) => {
                                     return (
                                         <div key={degree.program}>
                                             <SubTitle>
@@ -146,26 +91,18 @@ export default function CVScreen() {
                                 })
                             }
                         </SectionBox>
-                    </div>
+                    </LeftScreen>
                     <div>
-                        <SectionBox>
-                            <Title>
-                                PROFILE
-                            </Title>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        </SectionBox>
+                        <ProfileTitle />
                         <SectionBox>
                             <Title>
                                 EXPERIENCE
                             </Title>
                             {
-                                experienceList.map((item, index) => {
+                                experienceList.map((item: experience, index: number) => {
                                     return (
                                         <div key={index}>
-                                            <div style={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                            }}>
+                                            <SpaceBetween>
                                                 <MutedTitle>
                                                     {
                                                         item.jobTitle
@@ -176,7 +113,7 @@ export default function CVScreen() {
                                                         item.period
                                                     }
                                                 </MutedTitle>
-                                            </div>
+                                            </SpaceBetween>
                                             <SubTitle>
                                                 {item.companyName}
                                             </SubTitle>
@@ -193,7 +130,7 @@ export default function CVScreen() {
                     </div>
                 </FlexBox>
             </Screen>
-        </div>
+        </OverFlow>
     )
 }
 

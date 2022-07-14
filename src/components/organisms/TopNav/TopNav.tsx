@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import useWindowDimensions from '../hooks/useWindowDimensions';
-import { Bar, NavButton } from '../components/MyComponents';
+import { Bar, NavButton } from './TopNav.style';
 
 
 
 export default function TopNav() {
     const location = useLocation();
-    const { width, height } = useWindowDimensions();
     return (
         <Bar>
             <div>
