@@ -1,14 +1,11 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import ContactInfo from '../../components/atoms/ContactInfo/ContactInfo';
 import ProfileTitle from '../../components/atoms/ProfileTitle/ProfileTitle';
 import { Screen } from '../../components/molecules/FScreen/Screen';
 import NameTagCV from '../../components/molecules/NameTag/NameTag';
 import TopNav from '../../components/organisms/TopNav/TopNav'
 import { CVHeader, FlexBox, LeftScreen, MutedText, MutedTitle, OverFlow, SectionBox, SpaceBetween, SubTitle, Title } from './CVScreen.style';
-
-const skillList = require("../../utils/skillList.json")
-const experienceList = require("../../utils/experienceList.json")
-const degreeList = require("../../utils/degreeList.json")
 
 interface degree {
     degreeTitle: string,
@@ -28,7 +25,27 @@ interface experience {
 
 
 export default function CVScreen() {
-    console.log(degreeList);
+    const [skillList, setSkillList] = useState([]);
+    const [experienceList, setExperienceList] = useState([]);
+    const [degreeList, setDegreeList] = useState([]);
+    const apiClient = axios.create();
+    useEffect(() => {
+        apiClient.get("/experienceList.json").then((res) => {
+            setExperienceList(res.data);
+        }).catch((err) => {
+            console.error(err);
+        });
+        apiClient.get("/degreeList.json").then((res) => {
+            setDegreeList(res.data);
+        }).catch((err) => {
+            console.error(err);
+        });
+        apiClient.get("/skillList.json").then((res) => {
+            setSkillList(res.data);
+        }).catch((err) => {
+            console.error(err);
+        });
+    }, [])
     return (
         <OverFlow>
             <TopNav />
